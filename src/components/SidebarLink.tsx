@@ -12,10 +12,10 @@ export default function SidebarLink({ to, icon, label }: SidebarLinkProps) {
     <RouterNavLink
       to={to}
       className={({ isActive }) =>
-        `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors ${
+        `flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all font-medium ${
           isActive
-            ? "bg-sidebar-accent text-sidebar-primary font-medium"
-            : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+            ? "bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-300 border-l-2 border-purple-400"
+            : "text-gray-300 hover:bg-slate-700/50 hover:text-white"
         }`
       }
     >

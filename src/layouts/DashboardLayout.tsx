@@ -42,27 +42,28 @@ export default function DashboardLayout() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-slate-50">
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-foreground/20 z-30 lg:hidden"
+          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
+      {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-64 bg-sidebar flex flex-col transition-transform lg:translate-x-0 ${
+        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-64 bg-gradient-to-b from-slate-900 to-slate-800 flex flex-col transition-transform lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-5 border-b border-sidebar-border">
-          <h1 className="text-xl font-bold text-sidebar-primary-foreground">
-            Hire<span className="text-sidebar-primary">Loop</span>
+        <div className="p-6 border-b border-slate-700">
+          <h1 className="text-2xl font-bold text-white">
+            Hire<span className="text-purple-400">Loop</span>
           </h1>
-          <p className="text-xs text-sidebar-foreground mt-1">{roleLabel} Portal</p>
+          <p className="text-xs text-gray-400 mt-2">{roleLabel} Portal</p>
         </div>
 
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {links.map((link) => (
             <div key={link.to} onClick={() => setSidebarOpen(false)}>
               <SidebarLink {...link} />
@@ -70,40 +71,43 @@ export default function DashboardLayout() {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-sidebar-border">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-sidebar-primary flex items-center justify-center text-sidebar-primary-foreground text-sm font-medium">
+        <div className="p-4 border-t border-slate-700 bg-slate-900/50">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-white font-semibold text-sm">
               {name.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-sidebar-accent-foreground truncate">{name}</p>
-              <p className="text-xs text-sidebar-foreground capitalize">{role}</p>
+              <p className="text-sm font-semibold text-white truncate">{name}</p>
+              <p className="text-xs text-gray-400 capitalize">{role}</p>
             </div>
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 text-sm text-sidebar-foreground hover:text-destructive w-full px-2 py-1.5 rounded transition-colors"
+            className="flex items-center gap-2 text-sm text-gray-300 hover:text-red-400 w-full px-3 py-2 rounded-lg transition-colors hover:bg-red-400/10"
           >
             <LogOut size={16} />
-            <span>Log out</span>
+            <span>Log Out</span>
           </button>
         </div>
       </aside>
 
+      {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-20 h-14 bg-card border-b flex items-center px-4 lg:px-6">
+        {/* Header */}
+        <header className="sticky top-0 z-20 h-16 bg-white border-b border-gray-200 flex items-center px-4 lg:px-8 shadow-sm">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden p-2 rounded-lg hover:bg-muted"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <Menu size={20} />
+            <Menu size={20} className="text-gray-600" />
           </button>
-          <div className="ml-auto text-sm text-muted-foreground">
-            Welcome, <span className="font-medium text-foreground">{name}</span>
+          <div className="ml-auto text-sm text-gray-600">
+            Welcome back, <span className="font-semibold text-gray-900">{name}</span>!
           </div>
         </header>
 
-        <main className="flex-1 p-4 lg:p-6 overflow-auto">
+        {/* Main Area */}
+        <main className="flex-1 p-6 lg:p-8 overflow-auto">
           <Outlet />
         </main>
       </div>
