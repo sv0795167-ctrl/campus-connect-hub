@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import SidebarLink from "../components/SidebarLink";
+import Footer from "../components/Footer";
 import {
   LayoutDashboard, Briefcase, FileText, ClipboardList,
   MessageSquare, Users, PlusCircle, Building2, Megaphone,
@@ -110,6 +111,9 @@ export default function DashboardLayout() {
         <main className="flex-1 p-6 lg:p-8 overflow-auto">
           <Outlet />
         </main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );
